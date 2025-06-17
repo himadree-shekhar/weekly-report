@@ -1,0 +1,15 @@
+Displays the file-selection dialog.
+
+procedure TFrameMatrixOD.btnImportClick(Sender: TObject);
+    begin
+    // CSVOpenDialog.InitialDir := theUserDirectory; 
+    
+    if CSVOpenDialog.Execute then
+        begin
+        if not FileExists(CSVOpenDialog.FileName) then
+            // ShowMessage('Selected file does not exist.');
+            Exit;        
+        end;
+    end;
+
+    

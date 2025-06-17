@@ -1,0 +1,27 @@
+Task: 
+CHM-Export機能[中]: Design Flow QA
+
+KB > Exported HTML: FileName, Path
+
+GOAL: PHPKB CHM
+export-data.php :
+↓
+1. Export The HTML Topic File Correctly: (export path, images, links etc)
+2. By Category Path or preserve existing CHM Topic paths
+
+RoadHelpMapID.ID == PHPKB.Article.ContextID / Topic
+Flightway_Network_List_Editor = 10226; 
+
+Example: 
+MyHelp.hhp [FILES] :: HTMLFilePath
+MyHelp.hhc > OBJECT > Local :: HTMLFilePath
+MyHelp.ali : RoadHelpMapID.ID=HTMLFilePath
+new name suggest : RoadHelpMapID.hh : #define Flightway_Network_List_Editor 10226
+
+About CHM Compiler:
+UCwinRoadHelp Project/
+├── MyHelp.hhp  # Main project file that controls CHM compilation settings and file references.
+├── MyHelp.hhc  # Table of contents file that defines the navigation tree structure in the CHM.
+├── MyHelp.ali  # Alias file mapping context IDs to specific HTML topics, used for context-sensitive help.
+
+  p_AppHelpFile := ExtractFileDir(Application.ExeName) + '\Help(ENZ)\' + FileNameWithoutPathOrExtention + '.CHM';

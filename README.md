@@ -7,7 +7,7 @@
 - ISO27001:2023（JIS）説明会
 
 
-● ❖ ※ ↓ [X] └── ↳ 
+● ❖ ※ ↓ [X] └── ↳ ← →
 ~~ This is Strikethrough text ~~
 **This text is _extremely_ important**
 
@@ -45,62 +45,31 @@ _________________________________
     ● CHM-Export機能[中]
 _________________________________
 17日:
-    
+    ● Task: Import-MatrixCSV機能[中] : Read File
+    ● Task: CHM-Export機能[中]: Design Flow QA
+    ● Task: Voc:
+    ● Task: HW
+    ● Task: CND
+   
 _________________________________
 18日:
+    Task: 365アカウント切り替え方法
 _________________________________
 19日:
 _________________________________
 20日:
-*** Start Details section 
-- Test, Clean Code, Brush up
-- Clear Doubts: Exception, Leaks
-- Fix 修正 listbox index
-- 
-- レポート作成: オンライン健康セミナー（がん講座）※配信期間：6/25 18時まで
-- その他:週報, お茶当番
-- Ask QA: SO etc : Easiest MemoryLeak
+
 - 
 _________________________________
 
 ____________________________________________
 Details :
-実装:Show Warning Delete Used Profile
-ButtonPeDeleteClick: Refactoring
-MatrixOD: Method Override
-Fix Leak: Clone
-テスト機能
 
 ____________________________________________
 Next Week :
 ____________________________________________
 
-1. GOAL: PHPKB CHM
-export-data.php :
-↓
-1. Export The HTML Topic File Correctly: (export path, images, links etc)
-2. By Category Path or preserve existing CHM Topic paths
 
-RoadHelpMapID.ID == PHPKB.Article.ContextID / Topic
-Flightway_Network_List_Editor = 10226; 
-
-Example: 
-MyHelp.hhp [FILES] :: HTMLFilePath
-MyHelp.hhc 
-About CHM Compiler:
-MyHelpProject/
-├── MyHelp.hhp  # Main project file that controls CHM compilation settings and file references.
-├── MyHelp.hhc  # Table of contents file that defines the navigation tree structure in the CHM.
-├── MyHelp.ali  # Alias file mapping context IDs to specific HTML topics, used for context-sensitive help.
-
-  p_AppHelpFile := ExtractFileDir(Application.ExeName) + '\Help(ENZ)\' + FileNameWithoutPathOrExtention + '.CHM';
 
 ____________________________________________
-2. GOAL: Import OD-Matrix Table From CSV 
 
-TFrameMatrixOD.btnImport
-↓
-Import Function:  Reference : ButtonScriptLoadCSVClick
-____________________________________________
-3. FastMM 
-FastMM:
