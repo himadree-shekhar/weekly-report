@@ -1,131 +1,173 @@
 MyWeek
 
+<pre>
+    2025-08-07 09:54
+    <b>OK[✓]</b> : 1. Html table : Goal Clean Code, optimize unnecessary things, making more light and portable.
+
+        2. In Delphi VCL: Find the Exact reason of Access violation in Following:
+            FInstance[CurrentUsing] := FInstance[CurrentUsing].Clone as PedestriansGeneratorClass;
+            - For Easier Debug is it possible see the code from call stack from which the Exception will occur ? Because once the control flow into Exception the call stack becomes clue less.
+            - Why It Happened ?
+            
+            - GeneratorType change
+
+            ↓ [X] └── ├── ↳ ← →
+            PedestriansGeneratorEditProxyClass = class
+                PedestriansGeneratorType = ( _pgNormal, _pgMatrixOD);
+                FInstance : array [PedestriansGeneratorType] of PedestriansGeneratorClass;
+            
+            NetworkEditor.PedestriansGeneratorEditProxyClass.Create($201F16E0,0,$201F1940)
+            NetworkEditor.TFormNetworkEditor.AddNewEditProxy($201F1940)
+            NetworkEditor.TFormNetworkEditor.PopulateEditProxies
+            NetworkEditor.TFormNetworkEditor.FormShow(???)
+                ↓
+            constructor PedestriansGeneratorEditProxyClass.Create(const nwk: NetworkClass; const idx: Integer;
+            const aGenerator: PedestriansGeneratorClass);
+            begin
+            Assert(Assigned(aGenerator));
+            p_nwk := nwk;
+            p_Idx := idx;
+            p_currentUsing := aGenerator.TypeOfGenerator;
+            FInstance[p_currentUsing] := aGenerator;
+            end;
+
+//==============================================================================
+function PedestriansGeneratorListClass.SetPedestriansGenerator(
+index: Integer; pGeneratorType: PedestriansGeneratorType): PedestriansGeneratorClass;
+const
+pgTypeClass: array[PedestriansGeneratorType] of PedestriansGeneratorClassReference = (
+PedestriansGeneratorNormalClass, // _pgNormal
+PedestriansGeneratorMatrixODClass // _pgMatrixOD
+);
+var
+pG: PedestriansGeneratorClass;
+begin
+Assert(pGeneratorType in [Low(PedestriansGeneratorType)..High(PedestriansGeneratorType)]);
+
+pG := Items[index];
+if pG.TypeOfGenerator <> pGeneratorType then
+    begin
+    pG.Free;
+    pG := pgTypeClass[pGeneratorType].Create(p_parent);
+    Items[index] := pG;
+    end;
+
+    Result := pG;
+    end;
+//==============================================================================
+
+    result := pG;
+        3. Article Dir 作成 : Debug
+        
+        4. Milestone summaries focus on cumulative progress, showing what is DONE, in PROGRESS, or PENDING Regardless of type feature/task labels.
+
+        5. Do proof of concept (POC) then very shortly Outline Overall Process steps: 
+        6. PC Replace Preparation: Thunderbird Email Settings, RemoteSSH VsCode, HG Repository, 
+        F8VRNAS, F8BackUp, ESET
+
+        Goal I am Replacing Old PC, So to Retain Following in New PC What things/files to keep Backup? :
+        - VS Code :  Remote-SSH: Connect to Host
+        - 🖥️ Local VS Code → Remote-SSH Plugin → SSH Config (.ssh/config) File→ Connect → 🌐 Remote Server (VS Code Server runs
+        there)
+    KEYWORDS:------------------------------------------------------------
+        - In Delphi (RAD Studio) / In Delphi VCL
+        - 
+    --------------------------------------------------------------------
+</pre>
+
 <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <!-- Style-Customization: table design clean, reusable across multiple tables -->
     <style>
         table {
             table-layout: auto;
-            /* ensures columns auto-fit content */
             width: auto;
-            /* table doesn't stretch to full width */
+            border-collapse: collapse;
+            margin-bottom: 20px;
         }
 
         td {
             white-space: nowrap;
-            /* prevents text from wrapping */
-            padding-left: 5px;
-            padding-right: 5px;
+            padding: 0 5px;
+            font-size: 12pt;
+            color: black;
+            font-family: Calibri, sans-serif;
+            font-weight: 400;
+            vertical-align: top;
+        }
+
+        .label-cell {
+            background: #F2F2F2;
+            text-align: center;
+            border: 0.5pt solid black;
+            border-bottom: none;
+        }
+
+        .value-cell {
+            background: white;
+            border-top: 0.5pt solid black;
+            border-right: 0.5pt solid black;
+            border-left: none;
+            border-bottom: none;
+        }
+
+        tr:last-child .label-cell,
+        tr:last-child .value-cell {
+            border-bottom: 0.5pt solid black;
         }
     </style>
 </head>
-<table border="0" cellpadding="0" cellspacing="0" width="345">
+
+<!-- Table 1 : Daily Status -->
+<table>
     <colgroup>
-        <col width="61" style="mso-width-source:userset;mso-width-alt:2230;width:46pt">
-        <col width="284" style="mso-width-source:userset;mso-width-alt:10386;width:213pt">
+        <col style="width: 46pt">
+        <col style="width: 213pt">
     </colgroup>
     <tbody>
-        <tr height="21" style="height:15.75pt">
-            <td height="21" class="xl67" width="61" style="height:15.75pt;width:46pt;
-  font-size:12.0pt;color:black;font-weight:400;text-decoration:none;text-underline-style:
-  none;text-line-through:none;font-family:Calibri, sans-serif;border-top:.5pt solid black;
-  border-right:.5pt solid windowtext;border-bottom:none;border-left:.5pt solid windowtext;
-  background:#F2F2F2;mso-pattern:black none" align="center">8/4 (月)</td>
-            <td class="xl68" width="284" style="width:213pt;font-size:12.0pt;color:black;
-  font-weight:400;text-decoration:none;text-underline-style:none;text-line-through:
-  none;font-family:Calibri, sans-serif;border-top:.5pt solid black;border-right:
-  .5pt solid black;border-bottom:none;border-left:none;background:white;
-  mso-pattern:black none">保守作業<br>     • NetworkEditor修正: Commit(41994)</td>
+        <tr>
+            <td class="label-cell">8/4 (月)</td>
+            <td class="value-cell">保守作業<br>• NetworkEditor修正: Commit(41994)</td>
         </tr>
-        <tr height="21" style="height:15.75pt">
-            <td height="21" class="xl67" style="height:15.75pt;font-size:12.0pt;color:black;
-  font-weight:400;text-decoration:none;text-underline-style:none;text-line-through:
-  none;font-family:Calibri, sans-serif;border-top:.5pt solid black;border-right:
-  .5pt solid windowtext;border-bottom:none;border-left:.5pt solid windowtext;
-  background:#F2F2F2;mso-pattern:black none" align="center">8/5 (火)</td>
-            <td class="xl68" style="font-size:12.0pt;color:black;font-weight:400;
-  text-decoration:none;text-underline-style:none;text-line-through:none;
-  font-family:Calibri, sans-serif;border-top:.5pt solid black;border-right:
-  .5pt solid black;border-bottom:none;border-left:none;background:white;
-  mso-pattern:black none">保守作業<br>     • NetworkEditor修正: Nodes[Look At]ボタンのEnabled<br>     • [Bug #39919] 修正: Access
-                violation on GeneratorType change<br><br>ヘルプシステム更新<br>     • Export(Multi-HTML): Article Dir 作成</td>
-        </tr>
-        <tr height="21" style="height:15.75pt">
-            <td height="21" class="xl67" style="height:15.75pt;font-size:12.0pt;color:black;
-  font-weight:400;text-decoration:none;text-underline-style:none;text-line-through:
-  none;font-family:Calibri, sans-serif;border-top:.5pt solid black;border-right:
-  .5pt solid windowtext;border-bottom:none;border-left:.5pt solid windowtext;
-  background:#F2F2F2;mso-pattern:black none" align="center">8/6 (水)</td>
-            <td class="xl68" style="font-size:12.0pt;color:black;font-weight:400;
-  text-decoration:none;text-underline-style:none;text-line-through:none;
-  font-family:Calibri, sans-serif;border-top:.5pt solid black;border-right:
-  .5pt solid black;border-bottom:none;border-left:none;background:white;
-  mso-pattern:black none"><br>
+        <tr>
+            <td class="label-cell">8/5 (火)</td>
+            <td class="value-cell">
+                保守作業<br>• NetworkEditor修正: Nodes[Look At]ボタンのEnabled<br>
+                • [Bug #39919] 修正: Access violation on GeneratorType change<br><br>
+                ヘルプシステム更新<br>• Export(Multi-HTML): Article Dir 作成
             </td>
         </tr>
-        <tr height="21" style="height:15.75pt">
-            <td height="21" class="xl67" style="height:15.75pt;font-size:12.0pt;color:black;
-  font-weight:400;text-decoration:none;text-underline-style:none;text-line-through:
-  none;font-family:Calibri, sans-serif;border-top:.5pt solid black;border-right:
-  .5pt solid windowtext;border-bottom:none;border-left:.5pt solid windowtext;
-  background:#F2F2F2;mso-pattern:black none" align="center">8/7 (木)</td>
-            <td class="xl68" style="font-size:12.0pt;color:black;font-weight:400;
-  text-decoration:none;text-underline-style:none;text-line-through:none;
-  font-family:Calibri, sans-serif;border-top:.5pt solid black;border-right:
-  .5pt solid black;border-bottom:none;border-left:none;background:white;
-  mso-pattern:black none"><br>
-            </td>
+        <tr>
+            <td class="label-cell">8/6 (水)</td>
+            <td class="value-cell"><br></td>
         </tr>
-        <tr height="21" style="height:15.75pt">
-            <td height="21" class="xl67" style="height:15.75pt;font-size:12.0pt;color:black;
-  font-weight:400;text-decoration:none;text-underline-style:none;text-line-through:
-  none;font-family:Calibri, sans-serif;border-top:.5pt solid black;border-right:
-  .5pt solid windowtext;border-bottom:.5pt solid black;border-left:.5pt solid windowtext;
-  background:#F2F2F2;mso-pattern:black none" align="center">8/8 (金)</td>
-            <td class="xl68" style="font-size:12.0pt;color:black;font-weight:400;
-  text-decoration:none;text-underline-style:none;text-line-through:none;
-  font-family:Calibri, sans-serif;border-top:.5pt solid black;border-right:
-  .5pt solid black;border-bottom:.5pt solid black;border-left:none;background:
-  white;mso-pattern:black none"><br>
-            </td>
+        <tr>
+            <td class="label-cell">8/7 (木)</td>
+            <td class="value-cell"><br></td>
+        </tr>
+        <tr>
+            <td class="label-cell">8/8 (金)</td>
+            <td class="value-cell"><br></td>
         </tr>
     </tbody>
 </table>
 
-<br>
-<table border="0" cellpadding="0" cellspacing="0" width="345">
-
+<!-- Table 2 : Details Status -->
+<table>
     <colgroup>
-        <col width="61" style="mso-width-source:userset;mso-width-alt:2230;width:46pt">
-        <col width="284" style="mso-width-source:userset;mso-width-alt:10386;width:213pt">
+        <col style="width: 46pt">
+        <col style="width: 213pt">
     </colgroup>
     <tbody>
-        <tr height="21" style="height:15.75pt">
-            <td height="21" class="xl67" style="height:15.75pt;font-size:12.0pt;color:black;
-      font-weight:400;text-decoration:none;text-underline-style:none;text-line-through:
-      none;font-family:Calibri, sans-serif;border-top:.5pt solid black;border-right:
-      .5pt solid windowtext;border-bottom:none;border-left:.5pt solid windowtext;
-      background:#F2F2F2;mso-pattern:black none" align="center">Details</td>
-            <td class="xl68" style="font-size:12.0pt;color:black;font-weight:400;
-      text-decoration:none;text-underline-style:none;text-line-through:none;
-      font-family:Calibri, sans-serif;border-top:.5pt solid black;border-right:
-      .5pt solid black;border-bottom:none;border-left:none;background:white;
-      mso-pattern:black none">保守作業:<br>     •  <br></td>
+        <tr>
+            <td class="label-cell">Details</td>
+            <td class="value-cell">保守作業:<br>•<br></td>
         </tr>
-        <tr height="21" style="height:15.75pt">
-            <td height="21" class="xl67" style="height:15.75pt;font-size:12.0pt;color:black;
-      font-weight:400;text-decoration:none;text-underline-style:none;text-line-through:
-      none;font-family:Calibri, sans-serif;border-top:.5pt solid black;border-right:
-      .5pt solid windowtext;border-bottom:.5pt solid black;border-left:.5pt solid windowtext;
-      background:#F2F2F2;mso-pattern:black none" align="center">Next</td>
-            <td class="xl68" style="font-size:12.0pt;color:black;font-weight:400;
-      text-decoration:none;text-underline-style:none;text-line-through:none;
-      font-family:Calibri, sans-serif;border-top:.5pt solid black;border-right:
-      .5pt solid black;border-bottom:.5pt solid black;border-left:none;background:
-      white;mso-pattern:black none"><br>
-            </td>
+        <tr>
+            <td class="label-cell">Next</td>
+            <td class="value-cell"><br></td>
         </tr>
     </tbody>
-
 </table>
 
 
@@ -151,6 +193,46 @@ else if Sender = rSEditNumberPedestrians then
 Help-Sys/phpkb Export(MultiHTML): Article Dir 作成
 Help-Sys/phpkb Export(MultiHTML): Raw Article File 作成
 
+2025-08-07 18:09:29:
+Bug Ticket:(Assigned)
+- NetworkEditor修正: Nodes[Look At]ボタンのEnabled
+- NetworkEditor修正: Access violation(ChangeType)
+[Findings: happen if pathway numbers odd !!]
+FInstance[CurrentUsing] := FInstance[CurrentUsing].Clone as PedestriansGeneratorClass;
+
+- MatrixOD修正: Reflect Field Update on its Cell. maybe Paint issue.
+
+Help-Sys/phpkb Export(MultiHTML): Article Dir 作成
+EXAMPLE:
+<a href="download.php?called=ajax&amp;act=export&amp;filename=document-2025-08-05-09-07-46&amp;ext=.html"
+    target="_blank" title="Download"><img src="images/download.png" style="vertical-align:middle;" alt="Download">
+    Download</a>
+
+-------------------------------------------------------
+
+www/
+├── phpkbv95/
+│ ├── admin/
+│ │ └── include/
+│ │ ├── functions-export.php ← Main caller script
+│ │ └── functions-import.php ← Helper script (defines setup_directory)
+│ └── assets/ ← ✅ Destination root for new directories
+
+define('ASSETS_BASE_PATH', realpath(__DIR__ . '/../../assets'));
+
+require_once 'functions-import.php';
+
+$category_dir = 'my/category/path'; // could come from DB or logic
+$category_full_path = ASSETS_BASE_PATH . '/' . $category_dir;
+
+if (!setup_directory($category_full_path)) {
+echo "Failed to create directory: $category_full_path";
+}
+
+
+
+-------------------------------------------------------
+---------------------------
 [Delphi Help ID] ↔ [CHM_HELP_ID field in PHPKB] ↔ [article_id] → URL for Web Help
 📘 CHM SIDE:
 #define Pathways_Network_Editor 10225 ← Unique ID per help topic
@@ -200,7 +282,7 @@ AND d.field_data = '10225'; -- Lookup CHM Help ID (from Delphi)
 
 ---------------------------
 
-夜20分間走る [メモ:低血糖に注意]
+夜20分間走る [メモ:低血糖に注意] ***Burn 500 calories/Day !!!
 浴びる/温泉
 23時:睡眠薬を飲んで瞑想
 24時:寝る
@@ -214,20 +296,13 @@ MOS認定資格
 Ikigai(生きがい): 生きがいを明確にし、相談専門家を見つける、計画を立て、定期的に実行します。
 
 
-ChatGPT :
-so I need short, clear, and to-the-point answers that help me understand the concept without extra details.
-Please tell me only the necessary steps — nothing more.
-I tend to overthink cognitive load, so before you reply, ask yourself: “Is this step really needed to solve the goal?”
-Help me avoid going in the wrong direction by keeping it simple and focused.
+ChatGPT Note:
+Instead of lengthy Explanation, I like short, clear, straightforward outline type pointed answers.
+[Visual Learning] : Instead of lengthy text explanation, I like straightforward 1 line pointed answers. I like Visual Learning to Recall Overall Process Flow text symbols : ↓ [X] └── ├── ↳ ← →
 
-[Visual Learning] : Instead of lengthy text explanation, I like straightforward pointed answers. I like Visual Learning
-(ADHD) using
-Easy to Recall Visual cues, mind maps, other visual aids text symbols : ↓ [X] └── ├── ↳ ← →
-Process Flow (Simple + Visual):
 
 Focus On Verifying The Overall Process Flow, So Don't jump and guess to solution.
 Table 2: Milestone summaries focus on cumulative progress, showing what is DONE, in PROGRESS, or PENDING Regardless of
 strict feature/task labels.
 
 </pre>
-
