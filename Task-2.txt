@@ -3,9 +3,82 @@ CHM-Export機能[中]: Design Flow QA
 
 KB > Exported HTML: FileName, Path
 
-GOAL: PHPKB CHM
-export-data.php :
-↓
+GOAL: 
+1.  Get 'Export' POST action
+2.  Get category type: public/private
+3.  Get selected category ID(s)
+4.  Get selected output format
+5.  Set $is_multiple_html flag
+6.  Validate category selection
+7.  If not html_multiple:
+      - Init $errors, $__content
+      - Generate document/file name
+      - Open output file handler
+8.  Fetch selected categories
+9.  If not html_multiple:
+      - Load scripts/styles (getScripts)
+      - Build $__header & $__footer
+10. Loop over categories:
+      - Init paths, counters
+      - Build category heading (if !html_multiple)
+      - Call getArticles() and subCatsArticles()
+      - If !html_multiple:
+          - Append index, content to $__content
+11. If not html_multiple:
+      - Write $__header + $__index + $__content to file
+      - Append $__footer
+      - Close file
+      - Generate doc/pdf using wkhtmltopdf (if needed)
+      - Check file status and log
+12. If html_multiple:
+      - Each article is saved individually inside getArticles()/subCatsArticles()
+13. Redirect back to export page with status
+
+
+if (!$is_multiple_html) {
+
+}
+
+Project-README : text file that keeps track of Task and its Sub-Tasks very easy to manage edit understand format.
+Make Table of Weekly Report of weekdays for Email: Task Status Comment
+Redmine : Log Time in Correctly Matched Issue(#)
+Excel Data:
+GSS:
+
+-------------------
+// Following Block is Existing CHM Help Project : 
+Help.hh:
+// .hh files keeps define Macro Name with ID value
+#define Pathways_Network_Editor 10225
+-------------------
+
+-------------------
+// Following Block is a sample on Haw a specific Form Help Button is connected to it corresponding Help page by ID
+Delphi App / RoadHelpMapID.pas :
+      const 
+            Pathways_Network_Editor = 10225;  // Pathway Network Editor's Help Page
+-------------------
+
+-------------------
+// Following Block is a sample on Haw a specific Form Help Button is connected to it corresponding Help page by ID
+Delphi App /NetworkEditor.pas : 
+      procedure TFormNetworkEditor.ButtonHelpClick(Sender: TObject);
+            begin
+            ShowHelp(Handle, Pathways_Network_Editor); 
+            end;
+-------------------
+
+-------------------
+Delphi App /Globals.pas :
+function ShowHelp(hwndCaller: HWND; dwData: DWORD): HWND;
+    begin
+    if dwData = 0 then
+        result := HtmlHelpW(0, PWideChar(GlobalEnvironment.AppHelpFile), HH_DISPLAY_TOPIC, dwData)
+    else
+        result := HtmlHelpW(0, PWideChar(GlobalEnvironment.AppHelpFile), HH_HELP_CONTEXT, dwData);
+    end;    
+-------------------
+
 1. Export The HTML Topic File Correctly: (export path, images, links etc)
 2. By Category Path or preserve existing CHM Topic paths
 
@@ -23,5 +96,34 @@ UCwinRoadHelp Project/
 ├── MyHelp.hhp  # Main project file that controls CHM compilation settings and file references.
 ├── MyHelp.hhc  # Table of contents file that defines the navigation tree structure in the CHM.
 ├── MyHelp.ali  # Alias file mapping context IDs to specific HTML topics, used for context-sensitive help.
+├── MyHelp.hh 
+p_AppHelpFile := ExtractFileDir(Application.ExeName) + '\Help(ENZ)\' + FileNameWithoutPathOrExtention + '.CHM';
 
-  p_AppHelpFile := ExtractFileDir(Application.ExeName) + '\Help(ENZ)\' + FileNameWithoutPathOrExtention + '.CHM';
+
+
+  ● ❖ ※ ↓ [X] └── ├── ↳ ← →
+  GOAL: 
+  Before dive into coding i want to get clear idea of overall Process so that can avoid unnecessary tasks or redundancy or inefficiency. 
+  We have knowledge base Web App PHPKB for help articles. 
+  
+  It has feature to Export articles as HTML pages.
+  Design The Process Flow Structure 
+  Function to add to  That CHM File
+
+Here is Overall Process Flow Structure:
+
+
+
+getArticles:
+  ├──$article_title
+  ├──<td style=\"padding:10px;\">$article_content</td>
+
+getCustomFields($article_id, $output_format):
+  ├── $rec['field_name'] $rec['field_data']
+
+
+HTML Help Workshop (HHW): htmlhelp.exe
+  ├── hhw.exe — IDE GUI
+  ├── hhc.exe — The Actual Compiler
+      ├── Example: hhc.exe path\to\yourProject.hhp
+

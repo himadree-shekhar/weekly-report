@@ -1,0 +1,55 @@
+[WRAP-UP] IT Annual Achievements Report PPT (Minimalist Way) — Summary So Far
+
+Objective
+- Prepare a 5-slide, 5-minute IT Annual Achievement Report PPT in Japanese
+- Target audience: Boss, Managers, Colleagues
+- Keep it minimalist, realistic, focused, and time-bound
+
+Timeframe and Resources
+- Time period: 2024年10月〜2025年9月 (1 fiscal year)
+- Inputs available:
+  - Redmine logs (task types, comments, time spent)
+  - Project files, screenshots, code links
+  - Optional: feedback or recognition
+
+Process Flow
+- Step 1: Understand what audience wants (results, improvements, contributions)
+- Step 2: Collect and clean input data
+- Step 3: Summarize data using Excel or ChatGPT
+- Step 4: Create 5-slide outline
+    - Slide 1: Title and Reporting Period
+    - Slide 2: Yearly Summary Snapshot
+    - Slide 3: Key Achievements (Top Projects)
+    - Slide 4: Work Breakdown (includes pie chart)
+    - Slide 5: Learning and Future Contributions
+- Step 5: Design with minimalist visuals (no dense text, clean layout)
+- Step 6: Translate to Japanese (use DeepL or ChatGPT)
+- Step 7: Rehearse and time for exactly 5 minutes
+- Step 8: Final polish, alignment check, export
+
+New Addition: Pie Chart for Task Types
+- Export Redmine logs as CSV
+- Use Excel or Google Sheets to group and sum hours by task type
+- Create a pie chart from that data
+- Translate task type labels to Japanese
+- Insert chart into Slide 4 with brief insight text
+
+Time Estimate (within 10 hours total)
+- Input collection: 1.5 hours
+- Data summarization: 1.5 hours
+- Slide drafting: 2 hours
+- Visual and language editing: 2.5 hours
+- Rehearsal and final check: 1.5 hours
+- Pie chart generation: included in above steps
+
+Tools to Use
+- Excel or Google Sheets (for chart and grouping)
+- ChatGPT (for summarization and Japanese translation)
+- Redmine CSV export
+- Optional: Mind map (Xmind), minimalist PPT template
+
+Next Steps (on request)
+- Minimalist PPT template (editable)
+- Excel pie chart template
+- Ready-to-use GPT prompt for Redmine log summarization
+- Simple Python script to automate pie chart creation

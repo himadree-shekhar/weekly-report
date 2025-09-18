@@ -1,0 +1,18 @@
+Total
+38, 01 - Java Basics
+22, 01 - Java Basics - OO Concepts
+63, 02 - Working with Java Data Types
+8, 02 - Working with Java Data Types - Garbage Collection
+90, 03 - Using Operators and Decision Constructs
+38, 04 - Creating and Using Arrays
+51, 05 - Using Loop Constructs
+13, 06 - Constructors
+41, 06 - Working with Methods
+17, 06 - Working with Methods - Overloading
+99, 07 - Working with Inheritance
+11, 07 - Working with Inheritance - instanceof
+61, 08 - Handling Exceptions
+11, 09 - Lambda Expressions
+15, 09 - Working with Java API - ArrayList
+41, 09 - Working with Java API - String, StringBuilder
+13, 09 - Working with Java API - Time and Date

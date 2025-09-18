@@ -1,212 +1,88 @@
-MyWeek
-
-<pre>
-    2025-08-07 09:54
-    <b>OK[✓]</b> : 1. Html table : Goal Clean Code, optimize unnecessary things, making more light and portable.
-
-        2. In Delphi VCL: Find the Exact reason of Access violation in Following:
-            FInstance[CurrentUsing] := FInstance[CurrentUsing].Clone as PedestriansGeneratorClass;
-            - For Easier Debug is it possible see the code from call stack from which the Exception will occur ? Because once the control flow into Exception the call stack becomes clue less.
-            - Why It Happened ?
-            
-            - GeneratorType change
-
-            ↓ [X] └── ├── ↳ ← →
-            PedestriansGeneratorEditProxyClass = class
-                PedestriansGeneratorType = ( _pgNormal, _pgMatrixOD);
-                FInstance : array [PedestriansGeneratorType] of PedestriansGeneratorClass;
-            
-            NetworkEditor.PedestriansGeneratorEditProxyClass.Create($201F16E0,0,$201F1940)
-            NetworkEditor.TFormNetworkEditor.AddNewEditProxy($201F1940)
-            NetworkEditor.TFormNetworkEditor.PopulateEditProxies
-            NetworkEditor.TFormNetworkEditor.FormShow(???)
-                ↓
-            constructor PedestriansGeneratorEditProxyClass.Create(const nwk: NetworkClass; const idx: Integer;
-            const aGenerator: PedestriansGeneratorClass);
-            begin
-            Assert(Assigned(aGenerator));
-            p_nwk := nwk;
-            p_Idx := idx;
-            p_currentUsing := aGenerator.TypeOfGenerator;
-            FInstance[p_currentUsing] := aGenerator;
-            end;
-
-//==============================================================================
-function PedestriansGeneratorListClass.SetPedestriansGenerator(
-index: Integer; pGeneratorType: PedestriansGeneratorType): PedestriansGeneratorClass;
-const
-pgTypeClass: array[PedestriansGeneratorType] of PedestriansGeneratorClassReference = (
-PedestriansGeneratorNormalClass, // _pgNormal
-PedestriansGeneratorMatrixODClass // _pgMatrixOD
-);
-var
-pG: PedestriansGeneratorClass;
-begin
-Assert(pGeneratorType in [Low(PedestriansGeneratorType)..High(PedestriansGeneratorType)]);
-
-pG := Items[index];
-if pG.TypeOfGenerator <> pGeneratorType then
-    begin
-    pG.Free;
-    pG := pgTypeClass[pGeneratorType].Create(p_parent);
-    Items[index] := pG;
-    end;
-
-    Result := pG;
-    end;
-//==============================================================================
-
-    result := pG;
-        3. Article Dir 作成 : Debug
-        
-        4. Milestone summaries focus on cumulative progress, showing what is DONE, in PROGRESS, or PENDING Regardless of type feature/task labels.
-
-        5. Do proof of concept (POC) then very shortly Outline Overall Process steps: 
-        6. PC Replace Preparation: Thunderbird Email Settings, RemoteSSH VsCode, HG Repository, 
-        F8VRNAS, F8BackUp, ESET
-
-        Goal I am Replacing Old PC, So to Retain Following in New PC What things/files to keep Backup? :
-        - VS Code :  Remote-SSH: Connect to Host
-        - 🖥️ Local VS Code → Remote-SSH Plugin → SSH Config (.ssh/config) File→ Connect → 🌐 Remote Server (VS Code Server runs
-        there)
-    KEYWORDS:------------------------------------------------------------
-        - In Delphi (RAD Studio) / In Delphi VCL
-        - 
-    --------------------------------------------------------------------
-</pre>
 
 <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <!-- Style-Customization: table design clean, reusable across multiple tables -->
-    <style>
-        table {
-            table-layout: auto;
-            width: auto;
-            border-collapse: collapse;
-            margin-bottom: 20px;
-        }
-
-        td {
-            white-space: nowrap;
-            padding: 0 5px;
-            font-size: 12pt;
-            color: black;
-            font-family: Calibri, sans-serif;
-            font-weight: 400;
-            vertical-align: top;
-        }
-
-        .label-cell {
-            background: #F2F2F2;
-            text-align: center;
-            border: 0.5pt solid black;
-            border-bottom: none;
-        }
-
-        .value-cell {
-            background: white;
-            border-top: 0.5pt solid black;
-            border-right: 0.5pt solid black;
-            border-left: none;
-            border-bottom: none;
-        }
-
-        tr:last-child .label-cell,
-        tr:last-child .value-cell {
-            border-bottom: 0.5pt solid black;
-        }
-    </style>
 </head>
 
-<!-- Table 1 : Daily Status -->
-<table>
-    <colgroup>
-        <col style="width: 46pt">
-        <col style="width: 213pt">
-    </colgroup>
-    <tbody>
-        <tr>
-            <td class="label-cell">8/4 (月)</td>
-            <td class="value-cell">保守作業<br>• NetworkEditor修正: Commit(41994)</td>
-        </tr>
-        <tr>
-            <td class="label-cell">8/5 (火)</td>
-            <td class="value-cell">
-                保守作業<br>• NetworkEditor修正: Nodes[Look At]ボタンのEnabled<br>
-                • [Bug #39919] 修正: Access violation on GeneratorType change<br><br>
-                ヘルプシステム更新<br>• Export(Multi-HTML): Article Dir 作成
-            </td>
-        </tr>
-        <tr>
-            <td class="label-cell">8/6 (水)</td>
-            <td class="value-cell"><br></td>
-        </tr>
-        <tr>
-            <td class="label-cell">8/7 (木)</td>
-            <td class="value-cell"><br></td>
-        </tr>
-        <tr>
-            <td class="label-cell">8/8 (金)</td>
-            <td class="value-cell"><br></td>
-        </tr>
-    </tbody>
-</table>
+MyWeek
 
-<!-- Table 2 : Details Status -->
-<table>
-    <colgroup>
-        <col style="width: 46pt">
-        <col style="width: 213pt">
-    </colgroup>
-    <tbody>
-        <tr>
-            <td class="label-cell">Details</td>
-            <td class="value-cell">保守作業:<br>•<br></td>
-        </tr>
-        <tr>
-            <td class="label-cell">Next</td>
-            <td class="value-cell"><br></td>
-        </tr>
-    </tbody>
-</table>
-
-
-<!-- ===================================================== -->
 <pre>
-<b>PRE :</b>
-Project UCwinRoad.exe raised exception class EAssertionFailed with message 'Assertion failure
-(D:\UCRoadDevTrunkNew\Q\Network\NetworkEditor.pas, line 1117)'.
+    --------------------------------------------------------------------
+    ChatGPT Note : [WRAP-UP] — To Start where we stopped, please summarize context in plain text (like a code block) so it
+    can copy everything cleanly.
+    
+    Sign : [✓]  [X] └── ├── ↳ ← → ↓
+    --------------------------------------------------------------------
+</pre>
 
-Unknown function at EHeapException.RaisingException
+<pre>
+[✓/X]
+_______________________________________________
+[✓X] : Sleep at 9:00 PM (6 cycles : 9Hr) (best for max recovery)
+[✓X] : Wake at 7 PM
+[✓X] : Exercise 500Cal
+_______________________________________________
+</pre>
+
+<pre>
+KB -> CHM Prototype by 1 OCT
+ACH-25/10/15日(水) -> by 10 OCT : Achievements Report PPT : "Minimalist Way" 
+CPWC2025 Poster PPT : What Aspects to focus to Create a Good Research Poster -> by 20 OCT
+Test Case: -> Before Release 18.0
+SDK Bug# -> Before Release 18.01
+UMD -> 2~9 (8H) By --?
+NenMatsu TAX -> by ?
+KNJ-W1
+TRY-1
+OCA-CH-9LE
+GIT-M1
+CND
+TOK
+</pre>
+
+<pre>
+HTML Help Project (.hhp) File:
+[OPTIONS]
+; Help Compiler (hhc.exe) builds CHM compatible with specified CHM Viewer (hh.exe) version
+Compatibility=1.1 or later
+
+; Output .chm file name (compiled help)
+Compiled file=UCwinROAD.chm
+
+; HTML Help Contents (.hhc) is HTML file (XML-style) defining tree of Headings (Chapters) and Pages (Topics)
+Contents file=UCwinROAD.hhc
+
+; Set 'main' window layout from [WINDOWS] as default display layout for CHM viewer (hh.exe)
+Default Window=main
+
+; Topic page to open by default when CHM is launched
+Default topic=UCwinRoad\Concept.htm
+
+; Not display compiler messages (warnings/info) after build
+Display compile notes=No
+
+; Do not display compilation progress during CHM build
+Display compile progress=No
+
+; Enables text search in all CHM topic pages
+Full-text search=Yes
+
+; HTML Help Keywords (.hhk) is HTML file (XML-style) that defines Keywords linked to Topics shown in Index tab
+Index file=UCwinROAD.hhk
+
+; Set Windows LCID, Language, and Country to localize UI for better UX and ensure correct alphabetical order in
+Index/search
+Language=0x411 Japanese (Japan)
+
+; Sets CHM Window Title
+Title=UC-win/Road Help
 
 
-Bug Ticket:(Assigned)
-- NetworkEditor修正: Nodes[Look At]ボタンの有効
-- NetworkEditor-修正:Access violationエラー
-[Findings: happen if pathway numbers odd !!]
-FInstance[CurrentUsing] := FInstance[CurrentUsing].Clone as PedestriansGeneratorClass;
+</pre>
+<pre>
 
-- MatrixOD修正: Reflect Field Update on its Cell. maybe Paint issue.
-TFrameMatrixOD.rSEditChange(Sender: TObject);
-else if Sender = rSEditNumberPedestrians then
-
-Help-Sys/phpkb Export(MultiHTML): Article Dir 作成
-Help-Sys/phpkb Export(MultiHTML): Raw Article File 作成
-
-2025-08-07 18:09:29:
-Bug Ticket:(Assigned)
-- NetworkEditor修正: Nodes[Look At]ボタンのEnabled
-- NetworkEditor修正: Access violation(ChangeType)
-[Findings: happen if pathway numbers odd !!]
-FInstance[CurrentUsing] := FInstance[CurrentUsing].Clone as PedestriansGeneratorClass;
-
-- MatrixOD修正: Reflect Field Update on its Cell. maybe Paint issue.
-
-Help-Sys/phpkb Export(MultiHTML): Article Dir 作成
-EXAMPLE:
-<a href="download.php?called=ajax&amp;act=export&amp;filename=document-2025-08-05-09-07-46&amp;ext=.html"
-    target="_blank" title="Download"><img src="images/download.png" style="vertical-align:middle;" alt="Download">
-    Download</a>
+    <b> Help-Sys/phpkb Export(MultiHTML): Fix Download ZIP File !!!</b> 
+    Example: <a href="download.php?called=ajax&amp;act=export&amp;filename=document-2025-08-05-09-07-46&amp;ext=.html"
+        target="_blank" title="Download">Download</a>
 
 -------------------------------------------------------
 
@@ -217,19 +93,6 @@ www/
 │ │ ├── functions-export.php ← Main caller script
 │ │ └── functions-import.php ← Helper script (defines setup_directory)
 │ └── assets/ ← ✅ Destination root for new directories
-
-define('ASSETS_BASE_PATH', realpath(__DIR__ . '/../../assets'));
-
-require_once 'functions-import.php';
-
-$category_dir = 'my/category/path'; // could come from DB or logic
-$category_full_path = ASSETS_BASE_PATH . '/' . $category_dir;
-
-if (!setup_directory($category_full_path)) {
-echo "Failed to create directory: $category_full_path";
-}
-
-
 
 -------------------------------------------------------
 ---------------------------
@@ -279,30 +142,11 @@ JOIN phpkb_custom_fields f ON d.field_id = f.field_id -- Link custom data to cus
 WHERE
 f.field_name = 'CHM_HELP_ID' -- Filter to only use CHM Help ID field
 AND d.field_data = '10225'; -- Lookup CHM Help ID (from Delphi)
+</pre>
 
----------------------------
-
-夜20分間走る [メモ:低血糖に注意] ***Burn 500 calories/Day !!!
-浴びる/温泉
-23時:睡眠薬を飲んで瞑想
-24時:寝る
-7時:起きる
-
-転職：手続きを進める
-カナダ:就職、移民準備
-Java認定資格
-MOS認定資格
-日本語能力の向上: 顧客と文法的に正しく会話、文章を読むことができる。
-Ikigai(生きがい): 生きがいを明確にし、相談専門家を見つける、計画を立て、定期的に実行します。
-
-
+<pre>
 ChatGPT Note:
 Instead of lengthy Explanation, I like short, clear, straightforward outline type pointed answers.
-[Visual Learning] : Instead of lengthy text explanation, I like straightforward 1 line pointed answers. I like Visual Learning to Recall Overall Process Flow text symbols : ↓ [X] └── ├── ↳ ← →
-
-
-Focus On Verifying The Overall Process Flow, So Don't jump and guess to solution.
-Table 2: Milestone summaries focus on cumulative progress, showing what is DONE, in PROGRESS, or PENDING Regardless of
-strict feature/task labels.
-
+[Visual Learning] : I like Visual Learning to Recall Overall Process Flow text symbols Such as : ↓ [X] └── ├── ↳ ← →
 </pre>
+

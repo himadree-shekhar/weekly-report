@@ -1,0 +1,35 @@
+Context Summary:
+
+- You implemented a feature in a Delphi app: when editing inputs on the "Network Editor" screen, if the user presses Cancel, all changes are discarded and the original state is restored upon reopening.
+- The screen is complex, with many UI items, multiple tabs, and child screens.
+- You want to write a single test case covering this main goal but applied across multiple parts/sections of the screen.
+- You prefer a Redmine test case format where:
+   * Description = numbered sequential steps from opening the screen to testing
+   * Expected Behaviour = mapped numbered list of only those steps where verification happens, not all steps.
+
+Latest version of your test case in that format:
+
+Test Case Title:  
+Network Editor - Cancel Should Revert All UI Changes
+
+Description:  
+1. Launch the application.  
+2. Navigate to the Network Editor screen.  
+3. Observe the current state of the data in the following UI sections:  
+   - PageControl: [Network]  
+   - GroupBox: Pathways  
+   - Pathway Editor  
+   - GroupBox: Nodes  
+   - Node Editor  
+   - PageControl: [Pedestrians Generator]  
+4. Modify at least one editable control in each of the above sections.  
+5. Press the [Cancel] button (do not press OK or Apply).  
+6. Reopen the Network Editor screen.
+
+Expected Behaviour:  
+5. The editor closes without saving any changes.  
+6. Upon reopening, all UI sections display the original data — no modifications persist.
+
+---
+
+This format matches your example style where not every step has an expected behaviour, only those critical verification steps.

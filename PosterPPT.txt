@@ -1,0 +1,26 @@
+[CONTEXT SUMMARY]
+
+GOAL:
+- As a competition host, you need to create Professional Research Posters (A1/A2) from student-submitted IT project materials.
+- You want to finish each poster in ~3–4 hours with a clear, minimalistic layout.
+- Manual editing is too time-consuming; you're looking for automation and efficient processes.
+
+INPUTS:
+- Each student team submits a folder with: PPT, DOC, PDF, Source Code, Demo Video.
+
+CHALLENGES:
+- Text-to-image ratio and layout not consistent.
+- Submitted diagrams (e.g., flowcharts) often unclear or unaligned with text, needing manual redrawing and formatting.
+- Manual work takes too much time per poster.
+
+YOUR ASK:
+- A minimalistic, practical process to make high-quality research posters fast.
+- Identify which parts can be automated.
+- Provide a clear visual outline or flow with minimal text.
+- Prefer structured, copyable formats over long explanations.
+
+WHAT CHATGPT PROVIDED:
+- A step-by-step minimalist process flow from input gathering → content extraction → visual selection → layout templating → automation → final polish.
+- Visual layout grid for standard poster sections (TITLE, ABSTRACT, METHOD, RESULTS, TOOLS).
+- Time-saving tips (auto-diagram, pre-built templates, Python automation).
+- Sample starter code for content extraction from DOCX files.

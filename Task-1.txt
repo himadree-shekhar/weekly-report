@@ -1,15 +1,15 @@
-Displays the file-selection dialog.
 
-procedure TFrameMatrixOD.btnImportClick(Sender: TObject);
-    begin
-    // CSVOpenDialog.InitialDir := theUserDirectory; 
-    
-    if CSVOpenDialog.Execute then
-        begin
-        if not FileExists(CSVOpenDialog.FileName) then
-            // ShowMessage('Selected file does not exist.');
-            Exit;        
-        end;
-    end;
-
-    
+Task: Fix cancel function to restore original network without changing NetworkList order:
+Hint: procedure TFormNetworkEditor.FormClose
+- [✓] Prevent self-assignment to avoid redundant operations
+- [✓] Copy simple fields: Name, Active, InitialPedestrians
+- [✓] Free existing pedestrian generators if assigned
+- [✓] Clear existing links and nodes arrays
+- [✓] Clear contextOptions list
+- [✓] Clone and assign pedestrian generators from source
+- [✓] Clone and assign each link from source to destination
+- [✓] Clone and assign each node from source to destination
+- [✓] Relink each cloned link to the correct cloned startNode and endNode
+- [✓] Add each cloned link back into its corresponding nodes’ link list
+- [✓] Clone and add each contextOption from source
+- [ ] Confirm GUID or ID handling is correct (preserve or regenerate)
