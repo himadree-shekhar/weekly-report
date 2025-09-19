@@ -95,28 +95,57 @@ www/
 │ └── assets/ ← ✅ Destination root for new directories
 
 -------------------------------------------------------
+HELP_CONTEXT_ID   <---- JPN f8_batch_import_html_config.csv 
+hh.exe -mapid 10225 ms-its:UCwinROAD.chm
+"D:\UCRoadDevTrunkNew\Q\SDK\UC-winRoad_SDK.groupproj"
+MACRO RENAME**** : Yoann Said** 
+
+
 ---------------------------
+
+Brainstorm Session : Please Help me to easily clarify my project goals:
+Goals Overview Context: Working on Export HTML Help Pages and workout Necessary mapping info (Dynamically get Page Tree Hierarchy, find a way to insert Context ID already used in Delphi App on order to associate pages to correct context Help) from LAMP PHP/MySql Database in suitable directory structure that can be use as Standalone Archive to build its CHM with matching TOC, Index and most importantly. in addition to make Standalone Archive, For that exported Archive We also have to Dynamically Generate Necessary Help Project Files : HHP, HHC, HHK, etc so that the Generated help project can output matching CHM file and also ensure that context Help IDs correctly linked in CHM so that Delphi App (Assume All IDs Set So Skip it) can open requested specific context Help.
+So coverall i am trying to build a CHM project from online LAMP site data.
+
+So as it is too complex to jump to real implementation, thus at 1st, for clean code principle i want to identify clean code responsibility independent of others parts that can be seen a individual process flow with needed steps like: 
+Process X : Step1 -> 2 -> 3
+Process Y : Step1 -> 2 -> 3
+
+Not Lets Give Some insight on DB side especially to find scope to save matching context ID meta-data:
+
+
+So Help me Specify The Easiest way to achieve it. 
+
+
+
 [Delphi Help ID] ↔ [CHM_HELP_ID field in PHPKB] ↔ [article_id] → URL for Web Help
 📘 CHM SIDE:
 #define Pathways_Network_Editor 10225 ← Unique ID per help topic
 
 🌐 PHPKB SIDE:
 
-phpkb_articles
-└── article_id ← Unique article
-└── article_title ← Human-readable title (e.g. "Pathways Network Editor")
-└── ...many fields...
+MySql Tables & Columns: Please help me to easily understand this 3 tables purpose and also answer following:
 
-phpkb_custom_fields
-└── field_id
-└── field_name ← (e.g. "CHM Help ID")
-└── field_type ← (text/integer/etc.)
+1. Here There term 'custom_fields' refer to anything like ID, Number or it is Literally UI Fields Like Combobox, Checkbox etc ?
+2. if it is UI Field can we still use it to keep mapping context Help ID in it ?
 
-phpkb_custom_data
+Table: phpkb_articles
+└── article_id -> PK 
+└── article_title
+
+Table: phpkb_custom_fields
+└── field_id -> PK
+└── field_name ← Seem Like Variable Name (e.g. CHM_HELP_ID)
+└── field_type ← ENUM('text')
+└── field_options
+└── field_status enum('internal', 'external')
+└── field_visibility enum('yes', 'no')
+
+Table: phpkb_custom_data
 └── data_id
-└── field_id ← FK to 'CHM Help ID' field
-└── article_id ← FK to actual article
-└── field_data ← Actual value (e.g., 10225)
+└── field_id ← FK 
+└── article_id ← FK
+└── field_data ← Actual value (e.g., CHM_HELP_ID Number : 10225)
 
 - Add 1 custom field to phpkb_custom_fields:
 - Then store mappings in phpkb_custom_data: Each row:
@@ -124,7 +153,28 @@ phpkb_custom_data
     article_id = PHPKB article (matching the help topic)
     field_data = CHM ID (e.g., 10225)
 
+    
 Visual Flow of Mapping:
+----------------------------------------
+unit RoadHelpMapID.pas :
+interface
+const
+    Pathways_Network_Editor = 10225; // Pathway Network Editor Help Context ID
+----------------------------------------
+
+Goal:
+Delphi unit RoadHelpMapID.pas Has all IDs
+↓
+Find way somehow to import each IDs(e.g 10225) to matching rows in database correctly.
+↓
+
+field_data(10225), article_title(???), article_id(78)
+
+ArticleInfo.CSV :
+topic_id,language_code,category_path,article_title,html_path
+488,JPN,"Help | 画面操作方法 | 編集|群集移動",「パスウェイネットワークの編集」画面,MainForm_and_Operations/Pathway_NetworkEditor.htm
+
+
 #define TopicName 10225 ← From CHM .hh file
 ↓
 CHM_HELP_ID → 10225 ← Custom field in PHPKB
